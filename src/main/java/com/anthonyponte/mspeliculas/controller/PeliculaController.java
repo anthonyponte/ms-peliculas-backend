@@ -18,7 +18,7 @@ import com.anthonyponte.mspeliculas.model.Pelicula;
 import com.anthonyponte.mspeliculas.service.IPeliculaService;
 
 @RestController
-@RequestMapping("/peliculas")
+@RequestMapping("/api/v1/peliculas")
 public class PeliculaController {
     @Autowired
     private IPeliculaService service;
