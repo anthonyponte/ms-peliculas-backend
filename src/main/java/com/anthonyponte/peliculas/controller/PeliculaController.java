@@ -1,4 +1,4 @@
-package com.anthonyponte.mspeliculas.controller;
+package com.anthonyponte.peliculas.controller;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.anthonyponte.mspeliculas.model.Pelicula;
-import com.anthonyponte.mspeliculas.service.IPeliculaService;
+import com.anthonyponte.peliculas.model.Pelicula;
+import com.anthonyponte.peliculas.service.IPeliculaService;
 
 @RestController
 @RequestMapping("/api/v1/peliculas")

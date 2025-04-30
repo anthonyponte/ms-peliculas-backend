@@ -1,4 +1,4 @@
-package com.anthonyponte.mspeliculas.model;
+package com.anthonyponte.peliculas.model;
 
 import java.util.Date;
 

@@ -1,11 +1,11 @@
-package com.anthonyponte.mspeliculas.service;
+package com.anthonyponte.peliculas.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.anthonyponte.mspeliculas.model.Pelicula;
+import com.anthonyponte.peliculas.model.Pelicula;
 
 @Service
 public interface IPeliculaService {

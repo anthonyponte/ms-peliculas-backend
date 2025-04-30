@@ -1,13 +1,13 @@
-package com.anthonyponte.mspeliculas;
+package com.anthonyponte.peliculas;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MsPeliculasApplication {
+public class PeliculasApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(MsPeliculasApplication.class, args);
+		SpringApplication.run(PeliculasApplication.class, args);
 	}
 
 }

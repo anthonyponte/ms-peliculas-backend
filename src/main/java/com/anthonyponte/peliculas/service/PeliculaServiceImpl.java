@@ -1,4 +1,4 @@
-package com.anthonyponte.mspeliculas.service;
+package com.anthonyponte.peliculas.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.anthonyponte.mspeliculas.model.Pelicula;
-import com.anthonyponte.mspeliculas.repository.PeliculaRepository;
+import com.anthonyponte.peliculas.model.Pelicula;
+import com.anthonyponte.peliculas.repository.PeliculaRepository;
 
 @Component
 public class PeliculaServiceImpl implements IPeliculaService {

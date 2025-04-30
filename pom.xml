@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.anthonyponte</groupId>
-	<artifactId>ms-peliculas</artifactId>
+	<artifactId>ms-peliculas-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>ms-peliculas</name>
-	<description>Demo project for Spring Boot</description>
+	<name>ms-peliculas-backend</name>
+	<description>Microservicio de películas para el curso de Docker y Kubernetes Intermedio</description>
 	<url/>
 	<licenses>
 		<license/>
