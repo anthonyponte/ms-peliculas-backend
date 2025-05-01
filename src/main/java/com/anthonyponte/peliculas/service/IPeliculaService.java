@@ -5,19 +5,15 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.anthonyponte.peliculas.model.Pelicula;
+import com.anthonyponte.peliculas.dto.PeliculaDTO;
 
 @Service
 public interface IPeliculaService {
-    public List<Pelicula> listarTodos();
+    public List<PeliculaDTO> listarPeliculas();
 
-    public Optional<Pelicula> obtenerPorId(Long id);
+    public Optional<PeliculaDTO> obtenerPeliculaPorId(Long id);
 
-    public Pelicula guardar(Pelicula pelicula);
+    public PeliculaDTO guardarPelicula(PeliculaDTO dto);
 
-    public Pelicula actualizar(Long id, Pelicula pelicula);
-
-    public void eliminar(Long id);
-
-    public Optional<Pelicula> obtenerPorTituloYGenero(String titulo, String genero);
+    public void eliminarPelicula(Long id);
 }

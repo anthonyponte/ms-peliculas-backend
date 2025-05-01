@@ -1,16 +1,14 @@
-package com.anthonyponte.peliculas.model;
+package com.anthonyponte.peliculas.entity;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,28 +24,18 @@ public class Pelicula {
     @Column(nullable = false)
     private String director;
 
-    @Column(nullable = false)
-    private String genero;
+    @ManyToOne
+    @JoinColumn(name = "id_genero", nullable = false)
+    private Genero genero;
 
     @Column(nullable = false)
     private Integer duracion;
 
     @Column(nullable = false)
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date fechaEstreno;
+    private LocalDate fechaEstreno;
 
-    public Pelicula() {
-    }
-
-    public Pelicula(Long id, String titulo, String director, String genero, Integer duracion, Date fechaEstreno) {
-        this.id = id;
-        this.titulo = titulo;
-        this.director = director;
-        this.genero = genero;
-        this.duracion = duracion;
-        this.fechaEstreno = fechaEstreno;
-    }
+    @Column(nullable = false)
+    private boolean favorito;
 
     public Long getId() {
         return id;
@@ -73,11 +61,11 @@ public class Pelicula {
         this.director = director;
     }
 
-    public String getGenero() {
+    public Genero getGenero() {
         return genero;
     }
 
-    public void setGenero(String genero) {
+    public void setGenero(Genero genero) {
         this.genero = genero;
     }
 
@@ -89,17 +77,19 @@ public class Pelicula {
         this.duracion = duracion;
     }
 
-    public Date getFechaEstreno() {
+    public LocalDate getFechaEstreno() {
         return fechaEstreno;
     }
 
-    public void setFechaEstreno(Date fechaEstreno) {
+    public void setFechaEstreno(LocalDate fechaEstreno) {
         this.fechaEstreno = fechaEstreno;
     }
 
-    @Override
-    public String toString() {
-        return "Pelicula [id=" + id + ", titulo=" + titulo + ", director=" + director + ", genero=" + genero
-                + ", duracion=" + duracion + ", fechaEstreno=" + fechaEstreno + "]";
+    public boolean isFavorito() {
+        return favorito;
+    }
+
+    public void setFavorito(boolean favorito) {
+        this.favorito = favorito;
     }
 }
