@@ -13,8 +13,10 @@ import com.anthonyponte.peliculas.entity.Genero;
 import com.anthonyponte.peliculas.entity.Pelicula;
 import com.anthonyponte.peliculas.repository.PeliculaRepository;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Component
-public class PeliculaServiceImpl implements IPeliculaService {
+public class PeliculaServiceImpl implements PeliculaService {
     @Autowired
     private PeliculaRepository repository;
 
@@ -55,6 +57,14 @@ public class PeliculaServiceImpl implements IPeliculaService {
         dto.setFechaEstreno(pelicula.getFechaEstreno().toString());
         dto.setFavorito(pelicula.isFavorito());
         return dto;
+    }
+
+    @Override
+    public void actualizarPeliculaFavorito(Long id, boolean esFavorito) {
+        Pelicula pelicula = repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Película no encontrada"));
+        pelicula.setFavorito(esFavorito);
+        repository.save(pelicula);
     }
 
     private Pelicula convertirAPelicula(PeliculaDTO dto) {

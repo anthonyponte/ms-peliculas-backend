@@ -7,6 +7,6 @@ import org.springframework.stereotype.Service;
 import com.anthonyponte.peliculas.dto.GeneroDTO;
 
 @Service
-public interface IGeneroService {
+public interface GeneroService {
     public List<GeneroDTO> listarGeneros();
 }

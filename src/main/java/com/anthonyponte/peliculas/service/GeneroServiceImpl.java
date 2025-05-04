@@ -11,7 +11,7 @@ import com.anthonyponte.peliculas.entity.Genero;
 import com.anthonyponte.peliculas.repository.GeneroRepository;
 
 @Component
-public class GeneroServiceImpl implements IGeneroService {
+public class GeneroServiceImpl implements GeneroService {
     @Autowired
     private GeneroRepository repository;
 

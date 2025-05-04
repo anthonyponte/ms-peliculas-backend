@@ -1,7 +1,6 @@
 package com.anthonyponte.peliculas.dto;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class PeliculaDTO implements Serializable {
     private static final long serialVersionUID = 1L;

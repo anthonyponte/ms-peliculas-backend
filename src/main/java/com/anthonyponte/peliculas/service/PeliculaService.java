@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.anthonyponte.peliculas.dto.PeliculaDTO;
 
 @Service
-public interface IPeliculaService {
+public interface PeliculaService {
     public List<PeliculaDTO> listarPeliculas();
 
     public Optional<PeliculaDTO> obtenerPeliculaPorId(Long id);
@@ -16,4 +16,6 @@ public interface IPeliculaService {
     public PeliculaDTO guardarPelicula(PeliculaDTO dto);
 
     public void eliminarPelicula(Long id);
+
+    public void actualizarPeliculaFavorito(Long id, boolean esFavorito);
 }
