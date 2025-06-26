@@ -1,21 +1,22 @@
 package com.anthonyponte.peliculas.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.anthonyponte.peliculas.dto.PeliculaDTO;
+import com.anthonyponte.peliculas.entity.Pelicula;
 
 @Service
 public interface PeliculaService {
-    public List<PeliculaDTO> listarPeliculas();
+    public List<Pelicula> listarPeliculas();
 
-    public Optional<PeliculaDTO> obtenerPeliculaPorId(Long id);
+    public Pelicula obtenerPeliculaPorId(Long id);
 
-    public PeliculaDTO guardarPelicula(PeliculaDTO dto);
+    public Pelicula crearPelicula(Pelicula pelicula);
 
-    public void eliminarPelicula(Long id);
+    public Pelicula actualizarPelicula(Long id, Pelicula pelicula);
 
-    public void actualizarPeliculaFavorito(Long id, boolean esFavorito);
+    public void eliminarPeliculaPorId(Long id);
+
+    public Pelicula actualizarPeliculaFavorito(Long id, boolean esFavorito);
 }

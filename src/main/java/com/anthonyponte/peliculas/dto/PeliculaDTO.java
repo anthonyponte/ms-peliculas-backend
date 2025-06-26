@@ -1,9 +1,6 @@
 package com.anthonyponte.peliculas.dto;
 
-import java.io.Serializable;
-
-public class PeliculaDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class PeliculaDTO {
     private Long id;
     private String titulo;
     private String director;

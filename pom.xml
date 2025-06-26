@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.anthonyponte</groupId>
 	<artifactId>ms-peliculas-backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>ms-peliculas-backend</name>
 	<description>Microservicio de películas para el curso de Docker y Kubernetes Intermedio</description>
 	<url/>

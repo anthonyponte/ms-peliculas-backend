@@ -1,9 +1,6 @@
 package com.anthonyponte.peliculas.dto;
 
-import java.io.Serializable;
-
-public class GeneroDTO implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class GeneroDTO {
     private Long id;
     private String descripcion;
 

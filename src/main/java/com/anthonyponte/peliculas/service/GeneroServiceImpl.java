@@ -1,12 +1,12 @@
 package com.anthonyponte.peliculas.service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.anthonyponte.peliculas.dto.GeneroDTO;
 import com.anthonyponte.peliculas.entity.Genero;
 import com.anthonyponte.peliculas.repository.GeneroRepository;
 
@@ -16,17 +16,36 @@ public class GeneroServiceImpl implements GeneroService {
     private GeneroRepository repository;
 
     @Override
-    public List<GeneroDTO> listarGeneros() {
-        List<Genero> listGeneros = repository.findAll();
-        return listGeneros.stream()
-                .map(this::convertirAGeneroDTO)
-                .collect(Collectors.toList());
+    public List<Genero> listarGeneros() {
+        return repository.findAll();
     }
 
-    public GeneroDTO convertirAGeneroDTO(Genero genero) {
-        GeneroDTO dto = new GeneroDTO();
-        dto.setId(genero.getId());
-        dto.setDescripcion(genero.getDescripcion());
-        return dto;
+    @Override
+    public Genero obtenerGeneroPorId(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Género no encontrado"));
+    }
+
+    @Override
+    public Genero crearGenero(Genero genero) {
+        return repository.save(genero);
+    }
+
+    @Override
+    public Genero actualizarGenero(Long id, Genero genero) {
+        Genero g = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Género no encontrado"));
+
+        g.setDescripcion(genero.getDescripcion());
+
+        return repository.save(g);
+    }
+
+    @Override
+    public void eliminarGeneroPorId(Long id) {
+        Genero genero = repository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Género no encontrado"));
+
+        repository.delete(genero);
     }
 }

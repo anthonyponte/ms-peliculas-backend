@@ -9,12 +9,10 @@ data:
       application:
         name: ms-peliculas-backend
       datasource:
-        url: jdbc:oracle:thin:@//oracle-db:1521/XEPDB1
+        url: jdbc:oracle:thin:@oracle-db-service:1521/XEPDB1
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
-      profiles:
-        active: dev
     server:
       port: 9091
     management:

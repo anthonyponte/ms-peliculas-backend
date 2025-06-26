@@ -1,6 +1,6 @@
 FROM openjdk:21-jdk-slim
 WORKDIR /app
-COPY target/ms-peliculas-backend-0.0.1-SNAPSHOT.jar ms-peliculas-backend.jar
+COPY target/ms-peliculas-backend-1.0.0.jar ms-peliculas-backend.jar
 EXPOSE 9091
 ENV SPRING_PROFILES_ACTIVE=docker
 ENV SERVER_PORT=9091

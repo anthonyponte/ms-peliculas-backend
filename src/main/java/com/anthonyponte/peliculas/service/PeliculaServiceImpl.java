@@ -1,16 +1,15 @@
 package com.anthonyponte.peliculas.service;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
+import org.springframework.web.server.ResponseStatusException;
 
-import com.anthonyponte.peliculas.dto.PeliculaDTO;
 import com.anthonyponte.peliculas.entity.Genero;
 import com.anthonyponte.peliculas.entity.Pelicula;
+import com.anthonyponte.peliculas.repository.GeneroRepository;
 import com.anthonyponte.peliculas.repository.PeliculaRepository;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -18,68 +17,63 @@ import jakarta.persistence.EntityNotFoundException;
 @Component
 public class PeliculaServiceImpl implements PeliculaService {
     @Autowired
-    private PeliculaRepository repository;
+    private PeliculaRepository peliculaRepository;
+
+    @Autowired
+    private GeneroRepository generoRepository;
 
     @Override
-    public List<PeliculaDTO> listarPeliculas() {
-        List<Pelicula> listPeliculas = repository.findAll();
-        return listPeliculas.stream()
-                .map(this::convertirAPeliculaDTO)
-                .collect(Collectors.toList());
+    public List<Pelicula> listarPeliculas() {
+        return peliculaRepository.findAll();
     }
 
     @Override
-    public Optional<PeliculaDTO> obtenerPeliculaPorId(Long id) {
-        return repository.findById(id)
-                .map(this::convertirAPeliculaDTO);
+    public Pelicula obtenerPeliculaPorId(Long id) {
+        return peliculaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Película no encontrada"));
     }
 
     @Override
-    public PeliculaDTO guardarPelicula(PeliculaDTO dto) {
-        Pelicula p = convertirAPelicula(dto);
-        Pelicula pelicula = repository.save(p);
-        return convertirAPeliculaDTO(pelicula);
+    public Pelicula crearPelicula(Pelicula pelicula) {
+        generoRepository.findById(pelicula.getGenero().getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Género no encontrado"));
+
+        return peliculaRepository.save(pelicula);
     }
 
     @Override
-    public void eliminarPelicula(Long id) {
-        repository.deleteById(id);
-    }
+    public Pelicula actualizarPelicula(Long id, Pelicula pelicula) {
+        Pelicula p = peliculaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Película no encontrada"));
 
-    private PeliculaDTO convertirAPeliculaDTO(Pelicula pelicula) {
-        PeliculaDTO dto = new PeliculaDTO();
-        dto.setId(pelicula.getId());
-        dto.setTitulo(pelicula.getTitulo());
-        dto.setDirector(pelicula.getDirector());
-        dto.setGeneroId(pelicula.getGenero().getId());
-        dto.setGeneroDescripcion(pelicula.getGenero().getDescripcion());
-        dto.setDuracion(pelicula.getDuracion());
-        dto.setFechaEstreno(pelicula.getFechaEstreno().toString());
-        dto.setFavorito(pelicula.isFavorito());
-        return dto;
+        Genero genero = generoRepository.findById(pelicula.getGenero().getId())
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Género no encontrado"));
+
+        p.setTitulo(pelicula.getTitulo());
+        p.setDirector(pelicula.getDirector());
+        p.setGenero(genero);
+        p.setDuracion(pelicula.getDuracion());
+        p.setFechaEstreno(pelicula.getFechaEstreno());
+        p.setFavorito(pelicula.isFavorito());
+
+        return peliculaRepository.save(p);
     }
 
     @Override
-    public void actualizarPeliculaFavorito(Long id, boolean esFavorito) {
-        Pelicula pelicula = repository.findById(id)
+    public void eliminarPeliculaPorId(Long id) {
+        Pelicula pelicula = peliculaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Película no encontrada"));
+
+        peliculaRepository.delete(pelicula);
+    }
+
+    @Override
+    public Pelicula actualizarPeliculaFavorito(Long id, boolean esFavorito) {
+        Pelicula pelicula = peliculaRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Película no encontrada"));
+
         pelicula.setFavorito(esFavorito);
-        repository.save(pelicula);
-    }
 
-    private Pelicula convertirAPelicula(PeliculaDTO dto) {
-        Pelicula pelicula = new Pelicula();
-        pelicula.setId(dto.getId());
-        pelicula.setTitulo(dto.getTitulo());
-        pelicula.setDirector(dto.getDirector());
-
-        Genero genero = new Genero();
-        genero.setId(dto.getGeneroId());
-        pelicula.setGenero(genero);
-
-        pelicula.setDuracion(dto.getDuracion());
-        pelicula.setFechaEstreno(LocalDate.parse(dto.getFechaEstreno()));
-        pelicula.setFavorito(dto.isFavorito());
-        return pelicula;
+        return peliculaRepository.save(pelicula);
     }
 }
