@@ -4,11 +4,10 @@ public class PeliculaDTO {
     private Long id;
     private String titulo;
     private String director;
-    private Long generoId;
+    private Long idGenero;
     private String generoDescripcion;
     private Integer duracion;
     private String fechaEstreno;
-    private boolean favorito;
 
     public Long getId() {
         return id;
@@ -34,12 +33,12 @@ public class PeliculaDTO {
         this.director = director;
     }
 
-    public Long getGeneroId() {
-        return generoId;
+    public Long getIdGenero() {
+        return idGenero;
     }
 
-    public void setGeneroId(Long generoId) {
-        this.generoId = generoId;
+    public void setIdGenero(Long idGenero) {
+        this.idGenero = idGenero;
     }
 
     public String getGeneroDescripcion() {
@@ -64,13 +63,5 @@ public class PeliculaDTO {
 
     public void setFechaEstreno(String fechaEstreno) {
         this.fechaEstreno = fechaEstreno;
-    }
-
-    public boolean isFavorito() {
-        return favorito;
-    }
-
-    public void setFavorito(boolean favorito) {
-        this.favorito = favorito;
     }
 }

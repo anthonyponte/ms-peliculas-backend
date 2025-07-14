@@ -34,9 +34,6 @@ public class Pelicula {
     @Column(nullable = false)
     private LocalDate fechaEstreno;
 
-    @Column(nullable = false)
-    private boolean favorito;
-
     public Long getId() {
         return id;
     }
@@ -83,13 +80,5 @@ public class Pelicula {
 
     public void setFechaEstreno(LocalDate fechaEstreno) {
         this.fechaEstreno = fechaEstreno;
-    }
-
-    public boolean isFavorito() {
-        return favorito;
-    }
-
-    public void setFavorito(boolean favorito) {
-        this.favorito = favorito;
     }
 }

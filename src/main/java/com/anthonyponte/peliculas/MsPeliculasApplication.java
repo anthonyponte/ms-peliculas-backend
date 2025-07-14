@@ -6,10 +6,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @EnableDiscoveryClient
 @SpringBootApplication
-public class PeliculasApplication {
+public class MsPeliculasApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(PeliculasApplication.class, args);
+		SpringApplication.run(MsPeliculasApplication.class, args);
 	}
 
 }

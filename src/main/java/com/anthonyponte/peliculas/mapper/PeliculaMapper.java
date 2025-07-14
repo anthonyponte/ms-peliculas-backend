@@ -12,11 +12,10 @@ public class PeliculaMapper {
         dto.setId(pelicula.getId());
         dto.setTitulo(pelicula.getTitulo());
         dto.setDirector(pelicula.getDirector());
-        dto.setGeneroId(pelicula.getGenero().getId());
+        dto.setIdGenero(pelicula.getGenero().getId());
         dto.setGeneroDescripcion(pelicula.getGenero().getDescripcion());
         dto.setDuracion(pelicula.getDuracion());
         dto.setFechaEstreno(pelicula.getFechaEstreno().toString());
-        dto.setFavorito(pelicula.isFavorito());
 
         return dto;
     }
@@ -28,13 +27,12 @@ public class PeliculaMapper {
         pelicula.setDirector(dto.getDirector());
 
         Genero genero = new Genero();
-        genero.setId(dto.getGeneroId());
+        genero.setId(dto.getIdGenero());
         genero.setDescripcion(dto.getGeneroDescripcion());
         pelicula.setGenero(genero);
 
         pelicula.setDuracion(dto.getDuracion());
         pelicula.setFechaEstreno(LocalDate.parse(dto.getFechaEstreno()));
-        pelicula.setFavorito(dto.isFavorito());
 
         return pelicula;
     }

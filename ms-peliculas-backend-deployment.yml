@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ms-peliculas-backend-deployment
+  labels:
+    app: ms-peliculas-backend
 spec:
   replicas: 1
   selector:
@@ -13,23 +15,23 @@ spec:
         app: ms-peliculas-backend
     spec:
       containers:
-        - name: ms-peliculas-backend-container
+        - name: ms-peliculas-backend
           image: ms-peliculas-backend:1.0.0
           args:
             - "--spring.config.additional-location=file:/config/"
           ports:
-            - containerPort: 9091
+            - containerPort: 9080
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
-              port: 9091
+              port: 9080
             initialDelaySeconds: 400
             periodSeconds: 30
             timeoutSeconds: 10
           readinessProbe:
             httpGet:
               path: /actuator/health/readiness
-              port: 9091
+              port: 9080
             initialDelaySeconds: 105
             periodSeconds: 10
             timeoutSeconds: 10

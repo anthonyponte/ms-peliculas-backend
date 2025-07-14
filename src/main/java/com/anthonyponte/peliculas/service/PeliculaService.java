@@ -18,5 +18,5 @@ public interface PeliculaService {
 
     public void eliminarPeliculaPorId(Long id);
 
-    public Pelicula actualizarPeliculaFavorito(Long id, boolean esFavorito);
+    public boolean existePeliculaPorId(Long id);
 }

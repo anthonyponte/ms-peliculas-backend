@@ -12,8 +12,6 @@ import com.anthonyponte.peliculas.entity.Pelicula;
 import com.anthonyponte.peliculas.repository.GeneroRepository;
 import com.anthonyponte.peliculas.repository.PeliculaRepository;
 
-import jakarta.persistence.EntityNotFoundException;
-
 @Component
 public class PeliculaServiceImpl implements PeliculaService {
     @Autowired
@@ -54,7 +52,6 @@ public class PeliculaServiceImpl implements PeliculaService {
         p.setGenero(genero);
         p.setDuracion(pelicula.getDuracion());
         p.setFechaEstreno(pelicula.getFechaEstreno());
-        p.setFavorito(pelicula.isFavorito());
 
         return peliculaRepository.save(p);
     }
@@ -68,12 +65,7 @@ public class PeliculaServiceImpl implements PeliculaService {
     }
 
     @Override
-    public Pelicula actualizarPeliculaFavorito(Long id, boolean esFavorito) {
-        Pelicula pelicula = peliculaRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Película no encontrada"));
-
-        pelicula.setFavorito(esFavorito);
-
-        return peliculaRepository.save(pelicula);
+    public boolean existePeliculaPorId(Long id) {
+        return peliculaRepository.existsById(id);
     }
 }

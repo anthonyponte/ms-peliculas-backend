@@ -13,8 +13,22 @@ data:
         username: ${DB_USERNAME}
         password: ${DB_PASSWORD}
         driver-class-name: oracle.jdbc.OracleDriver
+      jpa:
+        hibernate:
+          ddl-auto: update
+        show-sql: true
+        properties:
+          hibernate:
+            dialect: org.hibernate.dialect.OracleDialect
+      cloud:
+        kubernetes:
+          discovery:
+            enabled: true
+            all-namespaces: true
+          secrets:
+            enabled: true
     server:
-      port: 9091
+      port: 9080
     management:
       endpoints:
         web:
